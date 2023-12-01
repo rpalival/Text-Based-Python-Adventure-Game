@@ -36,8 +36,7 @@ class AdventureGame:
             command_format = f"{command} ..." if info.target else command
             print(f"  {command_format} - {info.description}")
 
-    @staticmethod
-    def load_map(filename):
+    def load_map(self, filename):
         try:
             with open(filename, 'r') as file:
                 return json.load(file)
