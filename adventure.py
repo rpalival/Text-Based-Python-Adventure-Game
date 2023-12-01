@@ -1,4 +1,5 @@
 import json
+import sys
 
 class AdventureGame:
     class CommandInfo:
@@ -171,7 +172,16 @@ class AdventureGame:
         else:
             print("You are not carrying anything.")
 
-# This is a basic structure. To run the game, create an instance of AdventureGame with a map file and call start_game.
-# For example:
-game = AdventureGame('loop.map')
-game.start_game()
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: python3 adventure.py <map_file>")
+        sys.exit(1)
+
+    map_file = sys.argv[1]
+    # This is a basic structure. To run the game, create an instance of AdventureGame with a map file and call start_game.
+    # For example:
+    game = AdventureGame(map_file)
+    game.start_game()
+
+if __name__ == "__main__":
+    main()
