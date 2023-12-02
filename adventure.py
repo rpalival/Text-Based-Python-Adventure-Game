@@ -60,6 +60,8 @@ class AdventureGame:
         while True:
             try:
                 command = input("What would you like to do? ").strip().lower()
+                if command == "":
+                    break
                 if command:
                     self.process_command(command)
                 if command == "quit":
@@ -67,6 +69,7 @@ class AdventureGame:
                     break
             except EOFError:
                 print("\nUse 'quit' to exit.")
+                break
 
     def process_command(self, command):
         parts = command.split(maxsplit=1)
@@ -124,9 +127,6 @@ class AdventureGame:
                 print(f"  {item}")
         else:
             print("You're not carrying anything.")
-
-    def quit(self):
-        print("Goodbye!")
 
     def help(self):
         self.show_help()
