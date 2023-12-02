@@ -1,23 +1,53 @@
 [
-    {"name": "A white room", 
-     "desc": "You are in a simple room with white walls.",
-     "exits": { "north": 1, "east": 3 }
+    {
+        "name": "Wall Maria Entrance",
+        "desc": "The colossal gate of Wall Maria, towering above you. The air is tense with the threat of Titans.",
+        "exits": {"north": 1, "east": 2},
+        "items": ["flare gun"]
+    },
+    {
+        "name": "Scout Regiment HQ",
+        "desc": "The bustling headquarters of the Scout Regiment. Maps and plans of Titan territory cover the walls.",
+        "exits": {"south": 0, "east": 3},
+        "items": ["3D maneuver gear"]
+    },
+    {
+        "name": "Shiganshina District",
+        "desc": "The ruined district where it all began. Abandoned houses and the remnants of a battle linger.",
+        "exits": {"north": 4, "west": 0}
+    },
+    {
+        "name": "Trost District Armory",
+        "desc": "A stockpile of weapons and supplies. The walls are adorned with swords and military insignia.",
+        "exits": {"west": 1, "south": 5},
+        "items": ["blade"]
+    },
+    {
+        "name": "Titan Forest",
+        "desc": "A dense forest, known for its massive trees. A perfect place for ambushes... or to be ambushed.",
+        "exits": {"east": 6, "south": 2}
+    },
+    {
+        "name": "Wall Rose Interior",
+        "desc": "The inner sanctuary behind Wall Rose, filled with the unease of those seeking refuge from the Titans.",
+        "exits": {"north": 3, "east": 7}
+    },
+    {
+        "name": "Stohess District Underground",
+        "desc": "A labyrinth of underground tunnels beneath Stohess District. It's easy to get lost in the darkness.",
+        "exits": {"west": 4, "north": 7},
+        "items": ["light crystal"]
+    },
+    {
+        "name": "Survey Corps Expedition Start",
+        "desc": "The starting point for many expeditions beyond the walls. The air is filled with a mix of hope and fear.",
+        "exits": {"west": 5, "south": 6, "north": 8}
+    },
+    {
+        "name": "Beast Titan's Lair",
+        "desc": "The ominous lair of the Beast Titan. The walls echo with the sounds of past battles and whispered secrets.",
+        "exits": {"north": 0},
+        "win_condition": ["3D maneuver gear", "blade", "light crystal"],
+        "lose_condition": []
     }
-   ,
-    {"name": "A blue room", 
-     "desc": "This room is simple, too, but with blue walls.",
-     "exits": { "east": 2, "south": 0 }
-    }
-   ,
-    {"name": "A green room", 
-     "desc": "You are in a simple room, with bright green walls.",
-     "exits": { "west": 1, "south": 3 },
-     "items": []
-    }
-   ,
-    {"name": "A red room",
-     "desc": "This room is fancy. It's red!",
-     "exits": { "north": 2, "west": 0 },
-     "items": ["rose"]
-    }
-   ]
+]
