@@ -60,16 +60,12 @@ class AdventureGame:
         while True:
             try:
                 command = input("What would you like to do? ").strip().lower()
-                if command == "":
-                    break
                 if command:
                     self.process_command(command)
                 if command == "quit":
-                    print("Goodbye!")
                     break
             except EOFError:
                 print("\nUse 'quit' to exit.")
-                break
 
     def process_command(self, command):
         parts = command.split(maxsplit=1)
@@ -162,6 +158,10 @@ class AdventureGame:
             if not all(item in self.player_inventory for item in current_room["lose_condition"]["items"]):
                 print("You have been defeated! Game over.")
                 sys.exit(0)
+    
+    def quit(self):
+        print("Goodbye!")
+        sys.exit(0)
 
 def main():
     if len(sys.argv) < 2:
