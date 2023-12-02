@@ -1,53 +1,23 @@
 [
-    {
-        "name": "Entrance Hall",
-        "desc": "A dimly lit entrance hall with doors in 2 directions.",
-        "exits": {"north": 1, "east": 2},
-        "items": ["lantern"]
-    },
-    {
-        "name": "Mystic Library",
-        "desc": "Rows of ancient books line the walls. Old Literature smell fills the air.",
-        "exits": {"south": 0, "east": 3},
-        "items": ["magic scroll"]
-    },
-    {
-        "name": "Echoing Cave",
-        "desc": "A dark cave that amplifies every sound. A narrow path leads north.",
-        "exits": {"north": 4, "west": 0}
-    },
-    {
-        "name": "Ancient Armory",
-        "desc": "Rusty weapons and armor are scattered about. Something shiny catches your eye.",
-        "exits": {"west": 1, "south": 5},
-        "items": ["sword"]
-    },
-    {
-        "name": "Flooded Chamber",
-        "desc": "Water covers the floor. You hear the sound of rushing water to the east.",
-        "exits": {"east": 6, "south": 2}
-    },
-    {
-        "name": "Enchanted Garden",
-        "desc": "A serene garden filled with exotic plants and a sparkling fountain.",
-        "exits": {"north": 3, "east": 7}
-    },
-    {
-        "name": "Mirror Hall",
-        "desc": "Mirror on the wall, here we are again. Through my rise and fall you been my only friend.",
-        "exits": {"west": 4, "north": 7},
-        "items": ["golden key"]
-    },
-    {
-        "name": "Labyrinth Entrance",
-        "desc": "A complex maze of hedges begins here. The exit seems elusive.",
-        "exits": {"west": 5, "south": 6, "north": 8}
-    },
-    {
-        "name": "Boss Room",
-        "desc": "You stand in the lair of the King in the north. His eyes flicker with a cunning intelligence.",
-        "exits": {},
-        "win_condition": ["magic scroll", "sword", "golden key"],
-        "lose_condition": []
-    }
+ {"name": "A white room", 
+  "desc": "You are in a simple room with white walls.",
+  "exits": { "north": 1, "east": 3 }
+ }
+,
+ {"name": "A blue room", 
+  "desc": "This room is simple, too, but with blue walls.",
+  "exits": { "east": 2, "south": 0 }
+ }
+,
+ {"name": "A green room", 
+  "desc": "You are in a simple room, with bright green walls.",
+  "exits": { "west": 1, "south": 3 },
+  "items": []
+ }
+,
+ {"name": "A red room",
+  "desc": "This room is fancy. It's red!",
+  "exits": { "north": 2, "west": 0 },
+  "items": ["rose"]
+ }
 ]
