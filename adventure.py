@@ -15,14 +15,7 @@ class AdventureGame:
         'quit': CommandInfo(False, "Quit the game, it's not your cuppa tea"),
         'help': CommandInfo(False, 'Show this help message to know what commands you can use!'),
         'drop': CommandInfo(True, "Drop an item from your inventory into the current room")
-        # Add more commands as needed
     }
-
-    def reset_game(self):
-        # Reset the game state to its initial settings
-        self.map = self.load_map(self.map_file)  # Reload the map
-        self.player_location = 0
-        self.player_inventory = []
 
     def __init__(self, map_file):
         self.map_file = map_file
@@ -30,116 +23,66 @@ class AdventureGame:
         self.player_location = 0
         self.player_inventory = []
 
-    def show_help(self):
-        print("You can run the following commands:")
-        for command, info in AdventureGame.commands.items():
-            command_format = f"{command} ..." if info.target else command
-            print(f"  {command_format} - {info.description}")
-
     def load_map(self, filename):
         try:
             with open(filename, 'r') as file:
                 return json.load(file)
         except FileNotFoundError:
             print(f"Error: File '{filename}' not found.")
-            return None
+            sys.exit(1)
         except json.JSONDecodeError:
             print(f"Error: File '{filename}' is not a valid JSON file.")
+            sys.exit(1)
         return None
 
     def start_game(self):
-        # This function starts the game loop.
         self.show_current_room()
         while True:
             try:
-                command = input("What would you like to do? ")
-                command = ' '.join(command.strip().lower().split())  # Cleaning the input command
-                if command == "quit":
-                    print("Goodbye!")
-                    break
-                else:
+                command = input("What would you like to do? ").strip().lower()
+                if command:
                     self.process_command(command)
-                    
-            except EOFError:
-                print("\nUse 'quit' to exit.")  # EOF (Ctrl-D) handling
-
-            except KeyboardInterrupt:
-                print("\nGame interrupted. Goodbye!")  # Keyboard Interrupt (Ctrl-C) handling
+                if command == "quit":
+                    break
+            except (EOFError, KeyboardInterrupt):
+                print("\nGame interrupted. Goodbye!")
                 break
-    
-
-    def show_current_room(self):
-        # Display the current room's details, including items if any.
-        room = self.map[self.player_location]
-        print(f"\n> {room['name']}\n\n{room['desc']}\n")
-        if "items" in room and room["items"]:
-            items = ", ".join(room["items"])
-            print(f"Items: {items}\n")
-        exits = " ".join(room["exits"].keys())
-        print(f"Exits: {exits}\n")
 
     def process_command(self, command):
-        # This function processes the player's command.
-        command_statement = command.split()
-        verb = command_statement[0] if command_statement else ''
+        parts = command.split(maxsplit=1)
+        verb = parts[0]
+        argument = parts[1] if len(parts) > 1 else None
 
-        if verb in AdventureGame.commands:
-            if verb == "go":
-                if len(command_statement) > 1:
-                    direction = command_statement[1]
-                    self.move(direction)
-                else:
-                    print("Sorry, you need to 'go' somewhere.")
-
-            elif verb == "help":
-                self.show_help()
-
-            elif verb == "look":
-                self.show_current_room()
-
-            elif verb == "get":
-                if len(command_statement) > 1:
-                    item = ' '.join(command_statement[1:])
-                    self.get_item(item)
-                else:
-                    print("Sorry, you need to 'get' something.")
-
-            elif verb == "drop":
-                if len(command_statement) > 1:
-                    item = ' '.join(command_statement[1:])
-                    self.drop_item(item)
-                else:
-                    print("Sorry, you need to 'drop' something.")
-
-            elif verb == "inventory":
-                self.show_inventory()
+        if verb in self.commands:
+            if self.commands[verb].target and argument:
+                getattr(self, verb)(argument)
+            elif not self.commands[verb].target:
+                getattr(self, verb)()
+            else:
+                print(f"Sorry, you need to provide an argument for '{verb}'.")
         else:
             print("I don't understand that command.")
 
-    def check_win_lose_conditions(self):
-        current_room = self.map[self.player_location]
-        if "win_condition" in current_room:
-            if all(item in self.player_inventory for item in current_room["win_condition"]):
-                print("Congratulations! You have won the game!")
-                self.reset_game()
-            else:
-                print("You have been defeated! Game over.")
-                self.reset_game()
+    def show_current_room(self):
+        room = self.map[self.player_location]
+        print(f"\n> {room['name']}\n\n{room['desc']}\n")
+        if "items" in room and room["items"]:
+            print(f"Items: {', '.join(room['items'])}\n")
+        print(f"Exits: {', '.join(room['exits'].keys())}\n")
 
-    def move(self, direction):
-        # Move the player in the specified direction if possible.
+    def go(self, direction):
         current_room = self.map[self.player_location]
         if direction in current_room["exits"]:
             self.player_location = current_room["exits"][direction]
             print(f"You go {direction}.")
             self.show_current_room()
             self.check_win_lose_conditions()
+
         else:
             print(f"There is no way to go {direction}.")
-            
 
-    def get_item(self, item):
-        # Add an item to the player's inventory if it's in the room.
+
+    def get(self, item):
         room = self.map[self.player_location]
         if "items" in room and item in room["items"]:
             self.player_inventory.append(item)
@@ -147,9 +90,25 @@ class AdventureGame:
             print(f"You pick up the {item}.")
         else:
             print(f"There's no {item} here.")
-    
-    def drop_item(self, item):
-        # Check if the item is in the player's inventory
+
+    def look(self):
+        self.show_current_room()
+
+    def inventory(self):
+        if self.player_inventory:
+            print("Inventory:")
+            for item in self.player_inventory:
+                print(f"  {item}")
+        else:
+            print("You are not carrying anything.")
+
+    def quit(self):
+        print("Goodbye!")
+
+    def help(self):
+        self.show_help()
+
+    def drop(self, item):
         if item in self.player_inventory:
             self.player_inventory.remove(item)
             # Add the item to the current room
@@ -161,15 +120,25 @@ class AdventureGame:
         else:
             print(f"You don't have a {item} to drop.")
 
+    def show_help(self):
+        print("You can run the following commands:")
+        for command, info in self.commands.items():
+            print(f"  {command} - {info.description}")
 
-    def show_inventory(self):
-        # Show the items in the player's inventory.
-        if self.player_inventory:
-            print("Inventory:")
-            for item in self.player_inventory:
-                print(f"  {item}")
-        else:
-            print("You are not carrying anything.")
+    def check_win_lose_conditions(self):
+        current_room = self.map[self.player_location]
+
+        # win condition
+        if "win_condition" in current_room:
+            if all(item in self.player_inventory for item in current_room["win_condition"]["items"]):
+                print("Congratulations! You have won the game!")
+                sys.exit(0)
+
+        # lose condition
+        if "lose_condition" in current_room:
+            if not all(item in self.player_inventory for item in current_room["lose_condition"]["items"]):
+                print("You have been defeated! Game over.")
+                sys.exit(0)
 
 def main():
     if len(sys.argv) < 2:
@@ -177,8 +146,6 @@ def main():
         sys.exit(1)
 
     map_file = sys.argv[1]
-    # This is a basic structure. To run the game, create an instance of AdventureGame with a map file and call start_game.
-    # For example:
     game = AdventureGame(map_file)
     game.start_game()
 
