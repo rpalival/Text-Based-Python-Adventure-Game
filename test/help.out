@@ -1,0 +1,25 @@
+> Wall Maria Entrance
+
+The colossal gate of Wall Maria, towering above you. The air is tense with the threat of Titans.
+
+Items: flare gun
+
+Exits: north east
+
+What would you like to do? You go east.
+
+> Shiganshina District
+
+The ruined district where it all began. Abandoned houses and the remnants of a battle linger.
+
+Exits: north west
+
+What would you like to do? You can run the following commands:
+  go - Move in a direction and enter a new room
+  get - Pick up an item and place it in your inventory
+  look - Look around to know which room you are chilling in
+  inventory - Show your current inventory
+  quit - Quit the game, it's not your cuppa tea
+  help - Show this help message to know what commands you can use!
+  drop - Drop an item from your inventory into the current room
+What would you like to do? Goodbye!
