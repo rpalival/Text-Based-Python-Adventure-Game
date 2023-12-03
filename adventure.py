@@ -149,13 +149,13 @@ class AdventureGame:
 
         # win condition
         if "win_condition" in current_room:
-            if all(item in self.player_inventory for item in current_room["win_condition"]["items"]):
+            if all(item in self.player_inventory for item in current_room["win_condition"]):
                 print("Congratulations! You have won the game!")
                 sys.exit(0)
 
         # lose condition
         if "lose_condition" in current_room:
-            if not all(item in self.player_inventory for item in current_room["lose_condition"]["items"]):
+            if not all(item in self.player_inventory for item in current_room["lose_condition"]):
                 print("You have been defeated! Game over.")
                 sys.exit(0)
     

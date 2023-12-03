@@ -9,7 +9,7 @@
         "name": "Scout Regiment HQ",
         "desc": "The bustling headquarters of the Scout Regiment. Maps and plans of Titan territory cover the walls.",
         "exits": {"south": 0, "east": 3},
-        "items": ["3D maneuver gear"]
+        "items": ["3d maneuver gear"]
     },
     {
         "name": "Shiganshina District",
@@ -47,7 +47,7 @@
         "name": "Beast Titan's Lair",
         "desc": "The ominous lair of the Beast Titan. The walls echo with the sounds of past battles and whispered secrets.",
         "exits": {"north": 0},
-        "win_condition": ["3D maneuver gear", "blade", "light crystal"],
+        "win_condition": ["3d maneuver gear", "blade", "light crystal"],
         "lose_condition": []
     }
 ]
