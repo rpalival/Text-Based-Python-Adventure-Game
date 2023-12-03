@@ -1,0 +1,9 @@
+go north
+get 3d maneuver gear
+go south
+go east
+go north
+inventory
+drop 3d maneuver gear
+look
+quit
