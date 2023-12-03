@@ -155,7 +155,7 @@ class AdventureGame:
 
         # lose condition
         if "lose_condition" in current_room:
-            if not all(item in self.player_inventory for item in current_room["lose_condition"]):
+            if all(item in self.player_inventory for item in current_room["lose_condition"]):
                 print("You have been defeated! Game over.")
                 sys.exit(0)
     
