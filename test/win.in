@@ -1,0 +1,13 @@
+go north
+get 3d maneuver gear
+go east
+get blade
+go west
+go south
+go east
+go north
+go east
+get light crystal
+go north
+inventory
+go north
