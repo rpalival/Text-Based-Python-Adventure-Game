@@ -79,13 +79,13 @@ You can run the following commands:
 - go north
 - go north
 **the winning and losing conditions are mentioned in the loop.map file**
-    {
-        "name": "Beast Titan's Lair",
-        "desc": "The ominous lair of the Beast Titan. The walls echo with the sounds of past battles and whispered secrets.",
-        "exits": {"north": 0},
-        "win_condition": ["3d maneuver gear", "blade", "light crystal"],
-        "lose_condition": []
-    }
+{
+    "name": "Beast Titan's Lair",
+    "desc": "The ominous lair of the Beast Titan. The walls echo with the sounds of past battles and whispered secrets.",
+    "exits": {"north": 0},
+    "win_condition": ["3d maneuver gear", "blade", "light crystal"],
+    "lose_condition": []
+}
     NOTE: I have added win.in and win.out for winning conditions and lose.in and lose.out for losing conditions as reference test files.
 
 
