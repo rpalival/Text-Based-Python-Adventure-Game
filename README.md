@@ -78,6 +78,7 @@ You can run the following commands:
 - go east
 - go north
 - go north
+- 
 **the winning and losing conditions are mentioned in the loop.map file**
  {
     "name": "Beast Titan's Lair",
