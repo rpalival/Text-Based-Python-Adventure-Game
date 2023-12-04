@@ -58,6 +58,36 @@ You can run the following commands:
 - **New Verb/Feature**: Added win and lose conditions to the game. These conditions determine when the player wins or loses the game and exits the game based on the items in their inventory before entering specific rooms (e.g., Beast Titan's Lair).
 - **Exercise**: Players must collect specific items to trigger a win condition or avoid certain items to prevent a lose condition before entering the designated room.
 - **Location in the Map**: Win and lose conditions are defined within specific rooms in the game map. Test files `win.in`, `win.out`, `lose.in`, and `lose.out` are included for reference.
+**the fastest winning condition for my map is:**
+- go north
+- get 3d maneuver gear
+- go east
+- get blade
+- go west
+- go south
+- go east
+- go north
+- go east
+- get light crystal
+- go north
+- inventory
+- go north
+**the fastest losing condition is:**
+- go east
+- go north
+- go east
+- go north
+- go north
+**the winning and losing conditions are mentioned in the loop.map file**
+    {
+        "name": "Beast Titan's Lair",
+        "desc": "The ominous lair of the Beast Titan. The walls echo with the sounds of past battles and whispered secrets.",
+        "exits": {"north": 0},
+        "win_condition": ["3d maneuver gear", "blade", "light crystal"],
+        "lose_condition": []
+    }
+    NOTE: I have added win.in and win.out for winning conditions and lose.in and lose.out for losing conditions as reference test files.
+
 
 ### 3. Drop Command
 - **New Verb/Feature**: The "drop" command allows players to drop items from their inventory into the current room.
