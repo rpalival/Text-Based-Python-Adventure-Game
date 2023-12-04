@@ -1,5 +1,5 @@
 # Text-Based Adventure Game
-
+[![Run Tests CI](https://github.com/rpalival/cs515-project2/actions/workflows/test.yml/badge.svg)](https://github.com/rpalival/cs515-project2/actions/workflows/test.yml)
 ## Author
 - **Name**: Raj Palival
 - **Stevens Login**: rpalival@stevens.edu
